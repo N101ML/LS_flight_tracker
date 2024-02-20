@@ -2,7 +2,11 @@ require 'pg'
 
 class DatabasePersistence
   def initialize
-    @db = PG::Connection.open(:dbname => 'flight_tracker')
+    @db = if Sinatra::Base.production?
+      PG.connect(ENV['DATABASE_URL'])
+    else
+      PG.connect(dbname: "flight_tracker")
+    end
   end
 
   def flight_list
