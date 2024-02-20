@@ -1,0 +1,33 @@
+<ul class="flights-header">
+  <li></li>
+  <li>Flight Number</li>
+  <li>Airline</li>
+  <li>Departure City</li>
+  <li>Arrival City</li>
+  <li>Departure Time</li>
+  <li>Plane</li>
+  <li></li>
+</ul>
+<% @flight_list.each do |hash| %>
+  <ul class='flights-list'>
+    <li><img src="/images/airline_logos/<%= hash["logo"] %>" alt="Logo"></li>
+    <li><%= hash["flight_number"] %></li>
+    <li><%= hash["airline_name"] %></li>
+    <li><%= hash["dept_city"] %></li>
+    <li><%= hash["arrival_city"] %></li>
+    <li><%= hash["time"] %></li>
+    <li><%= hash["make"] %> - <%= hash["model"] %></li>
+    <li>
+    <form action="/myflights/<%= hash["flight_number"] %>" method="POST">
+        <select id="seat_class" name="seat_class">
+          <option value="">Select Seat Class</option>
+          <option value="First">First</option>
+          <option value="Premium Economy">Premium Economy</option>
+          <option value="Economy">Economy</option>
+          <option value="Basic Economy">Basic Economy</option>
+        </select>
+        <button type="submit">Add to My Flights</button>
+      </form>
+    </li>
+  </ul>
+<% end %>

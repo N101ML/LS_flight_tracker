@@ -1,0 +1,86 @@
+<h2 class='search-heading'>Search by Destination/Arrival City: </h2>
+<div class='nav-search'>
+  <form action="/search/city" method="POST">
+    <label for="airline">Airline:</label>
+    <select id="airline" name="airline">
+      <option value="">Select Airline</option>
+      <option value="American Airlines">American Airlines</option>
+      <option value="Delta Airlines">Delta Airlines</option>
+      <option value="Pan Am">Pan Am</option>
+      <option value="TWA">TWA</option>
+      <option value="United Airlines">United Airlines</option>
+    </select>
+    
+    <label for="departure_city">Departure City:</label>
+    <select id="departure_city" name="departure_city">
+      <option value="">Select Departure City</option>
+      <option value="Chicago">Chicago</option>
+      <option value="Dallas">Dallas</option>
+      <option value="Phoenix">Phoenix</option>
+      <option value="New York">New York</option>
+      <option value="San Fransisco">San Fransisco</option>
+      <option value="Seattle">Seattle</option>
+    </select>
+    
+    <label for="arrival_city">Arrival City:</label>
+    <select id="arrival_city" name="arrival_city">
+      <option value="">Select Departure City</option>
+      <option value="Chicago">Chicago</option>
+      <option value="Dallas">Dallas</option>
+      <option value="Phoenix">Phoenix</option>
+      <option value="New York">New York</option>
+      <option value="San Fransisco">San Fransisco</option>
+      <option value="Seattle">Seattle</option>
+  </select>
+  
+    <button type="submit">Search Flights</button>
+  </form>
+</div>
+<h2 class='search-heading'>Search by Flight Number:</h2>
+<div class='nav-search'>
+  <form action="/search/flight_number" method="POST">
+      <label for="flight_number">Flight Number:</label>
+      <input type="text" id="flight_number" name="flight_number" value="Ex: 1234" required>
+      <input type="submit" value="Submit">
+  </form>
+</div>
+
+<% if @search_result.nil? %>
+<% elsif @search_result.values.empty? %>
+  <h2>No Flights Found</h2>
+<% else %>
+  <ul class="flights-header">
+    <li></li>
+    <li>Flight Number</li>
+    <li>Airline</li>
+    <li>Departure City</li>
+    <li>Arrival City</li>
+    <li>Departure Time</li>
+    <li>Plane</li>
+    <li></li>
+  </ul>
+
+  <% @search_result.each do |hash| %>
+    <ul class='flights-list'>
+      <li><img src="/images/airline_logos/<%= hash["logo"] %>" alt="Logo"></li>
+      <li><%= hash["flight_number"] %></li>
+      <li><%= hash["airline_name"] %></li>
+      <li><%= hash["dept_city"] %></li>
+      <li><%= hash["arrival_city"] %></li>
+      <li><%= hash["time"] %></li>
+      <li><%= hash["make"] %> - <%= hash["model"] %></li>
+      <li>
+        <form action="/myflights/<%= hash["flight_number"] %>" method="POST">
+          <select id="seat_class" name="seat_class">
+            <option value="">Select Seat Class</option>
+            <option value="First">First</option>
+            <option value="Premium Economy">Premium Economy</option>
+            <option value="Economy">Economy</option>
+            <option value="Basic Economy">Basic Economy</option>
+          </select>
+          <button type="submit">Add to My Flights</button>
+        </form>
+      </li>
+    </ul>
+  <% end %>
+<% end %>

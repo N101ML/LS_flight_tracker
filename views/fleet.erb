@@ -1,0 +1,22 @@
+<form action="/fleet" method="POST">
+  <select id="airline_fleet" name="airline_fleet">
+    <option value="">Select Airline</option>
+    <option value="American Airlines">American Airlines</option>
+    <option value="Delta">Delta</option>
+    <option value="Pan Am">Pan Am</option>
+    <option value="TWA">TWA</option>
+    <option value="United Airlines">United Airlines</option>
+  </select>
+  <button type="submit">Go!</button>
+</form>
+
+<% if @fleet != nil %>
+  <h2><%= @fleet_airline_name %> Fleet</h2>
+  <% @fleet.each do |hash| %>
+    <ul class='fleet-list'>
+        <li><%= hash["manufacturer"] %></li>
+        <li><%= hash["model"] %></li>
+        <li><img src="/images/aircraft/<%= hash["pic_loc"] %>" alt="Logo"></li>
+    </ul>
+  <% end %>
+<% end %>

@@ -1,0 +1,29 @@
+<% if @user_flight_list.values.empty? %>
+  <h2>No Flights Added</h2>
+<% else %>
+  <ul class="flights-header">
+    <li></li>
+    <li>Flight Number</li>
+    <li>Airline</li>
+    <li>Departure City</li>
+    <li>Arrival City</li>
+    <li>Departure Time</li>
+    <li>Plane</li>
+    <li>Seat Class</li>
+    <li></li>
+  </ul>
+
+<% @user_flight_list.each do |hash| %>
+    <ul class='flights-list'>
+        <li><img src="/images/airline_logos/<%= hash["logo"] %>" alt="Logo"></li>
+        <li><%= hash["flight_number"] %></li>
+        <li><%= hash["airline_name"] %></li>
+        <li><%= hash["dept_city"] %></li>
+        <li><%= hash["arrival_city"] %></li>
+        <li><%= hash["time"] %></li>
+        <li><%= hash["make"] %> - <%= hash["model"] %></li>
+        <li><%= hash["seat_class"] %></li>
+        <li><a href="/myflights/<%= hash["flight_number"] %>/remove_flight">Remove Flight</a></li>
+    </ul>
+  <% end %>
+<% end %>

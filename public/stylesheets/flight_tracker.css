@@ -1,0 +1,111 @@
+body {
+  background-color: #45B38E;
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-header h1 {
+  font-size: 56px;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #254a4b;
+}
+
+.main-header img {
+  height: 150px;
+  width: 150px;
+}
+
+.nav-header ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nav-search form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-search form label, 
+.nav-sarch form select {
+  padding: 0 10px;
+  margin: 0 10px;
+}
+
+.nav-search form button[type="submit"] {
+  margin-left: 10px;
+}
+
+.search-heading {
+  text-align: center;
+}
+
+body a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-header ul li {
+  font-size: 24px;
+  color: #25414b;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.flights-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  background-color: white;
+  font-size: 16px;
+  border: 2px solid black;
+}
+
+.fleet-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  font-size: 24px;
+}
+
+.fleet-list img {
+  width: 300px;
+  height: auto;
+}
+
+.flights-header {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  background-color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border: 2px solid black;
+}
+
+.flights-list li,
+.flights-header li,
+.fleet-list li {
+  flex: 1;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+}
+
+.flights-list img {
+  width: auto;
+  height: 75px;
+  align-self: center;
+}
+
+.flights-list li a {
+  color: red;
+  font-weight: bold;
+}
