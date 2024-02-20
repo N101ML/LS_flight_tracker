@@ -2,7 +2,6 @@ require 'sinatra'
 require 'tilt/erubis'
 require 'sinatra/content_for'
 require_relative 'database_persistence'
-require 'pry'
 
 configure do 
   enable :sessions
