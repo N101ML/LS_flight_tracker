@@ -37,8 +37,9 @@ get '/myflights' do
 end
 
 post '/myflights/:flight_number' do
-  @flight_db.add_flight(params["flight_number"], params["seat_class"])
-  redirect '/myflights'
+  @result = @flight_db.add_flight(params["flight_number"], params["seat_class"])
+  @user_flight_list = @flight_db.user_flight_list
+  erb :user_flights, layout: :layout
 end
 
 get '/search' do

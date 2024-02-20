@@ -60,7 +60,8 @@ class DatabasePersistence
 
   def add_flight(flight_number, seat_class)
     flight_id = find_flight_id(flight_number.to_i)
-    
+    return 'duplicate' if check_for_duplicate(flight_number.to_i) == 't'
+
     sql = <<~SQL
       INSERT INTO user_flights (flight_id, seat_class)
       VALUES
@@ -154,5 +155,18 @@ class DatabasePersistence
     when 'New York'
       then 'LGA'
     end
+  end
+
+  def check_for_duplicate(flight_number)
+    sql = <<~SQL
+      SELECT EXISTS (
+        SELECT 1
+        FROM flights
+        JOIN user_flights ON user_flights.flight_id = flights.id
+        WHERE flights.flight_number = $1
+        )    
+    SQL
+
+    @db.exec_params(sql, [flight_number]).values[0][0]
   end
 end
